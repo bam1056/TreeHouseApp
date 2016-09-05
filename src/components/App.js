@@ -8,24 +8,25 @@ class App extends Component {
     super()
     this.state = {
       score: players.players.score,
-      initialPlayers: players.players,
+      players: players.players,
       title: 'Scoreboard'
     }
   }
 
   onScoreChange = (index, delta) => {
-    console.log(index, delta)
+    this.state.players[index].score += delta
+    this.setState(this.state)
   }
 
   render () {
-    const { title, initialPlayers } = this.state
+    const { title, players } = this.state
     return (
       <div className='scoreboard'>
-        <Header title={title} />
+        <Header title={title} players={players} />
         <div className='players'>
-        {initialPlayers.map((player, index) =>
+        {players.map((player, index) =>
           <Player
-            onScoreChange={function(delta) { this.onScoreChange(index, delta)}.bind(this)}
+            onScoreChange={(delta) => { this.onScoreChange(index, delta)}}
             name={player.name}
             score={player.score}
             key={player.name} />)}
