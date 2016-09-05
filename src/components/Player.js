@@ -10,7 +10,7 @@ class Player extends Component {
         {name}
         </div>
         <div className='player-score'>
-          <Counter score={score} />
+          <Counter score={score} onChange={this.props.onScoreChange} />
         </div>
       </div>
     )
@@ -18,6 +18,7 @@ class Player extends Component {
 }
 Player.propTypes = {
   name: React.PropTypes.string.isRequired,
-  score: React.PropTypes.number.isRequired
+  score: React.PropTypes.number.isRequired,
+  onScoreChange: React.PropTypes.func.isRequired
 }
 export default Player
